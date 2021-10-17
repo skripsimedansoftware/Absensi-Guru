@@ -248,16 +248,7 @@ desired effect
 				<li class="header">HEADER</li>
 				<!-- Optionally, you can add icons to the links -->
 				<li class="<?php echo $this->router->fetch_method() == 'index'?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
-				<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-				<li class="treeview">
-					<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-						<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="#">Link in level 2</a></li>
-						<li><a href="#">Link in level 2</a></li>
-					</ul>
-				</li>
+				<li class="<?php echo $this->router->fetch_method() == 'guru'?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class().'/guru') ?>"><i class="fa fa-users"></i> <span>Data Guru</span></a></li>
 			</ul>
 			<!-- /.sidebar-menu -->
 		</section>
@@ -384,6 +375,7 @@ function readURL(input) {
 	}
 }
 
+$('.datemask').inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' });
 $('.datatable').DataTable();
 </script>
 </body>

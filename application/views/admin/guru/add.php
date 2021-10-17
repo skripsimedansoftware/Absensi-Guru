@@ -30,7 +30,7 @@
 						</div>
 						<div class="form-group">
 							<label>Tanggal Lahir</label>
-							<input type="text" class="form-control" placeholder="Tanggal Lahir" name="birthday" value="<?php echo set_value('birthday') ?>">
+							<input type="text" class="form-control datemask" placeholder="Tanggal Lahir" name="birthday" value="<?php echo set_value('birthday') ?>">
 							<?php echo form_error('birthday', '<span class="help-block error">', '</span>'); ?>
 						</div>
 						<div class="form-group">
@@ -48,11 +48,21 @@
 							<input type="text" class="form-control" placeholder="Guru Mapel" name="guru_mapel" value="<?php echo set_value('guru_mapel') ?>">
 							<?php echo form_error('guru_mapel', '<span class="help-block error">', '</span>'); ?>
 						</div>
+						<div class="form-group">
+							<label>Kata Sandi</label>
+							<input type="text" class="form-control" placeholder="Kata Sandi" name="password" value="<?php echo set_value('password') ?>">
+							<?php echo form_error('password', '<span class="help-block error">', '</span>'); ?>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="box-footer">
-				<button type="submit" class="btn btn-success">Simpan</button>
+				<div class="row">
+					<div class="col-lg-6">
+						<a class="btn btn-warning" href="<?php echo base_url('admin/guru') ?>">Kembali</a>
+						<button type="submit" class="btn btn-success">Simpan</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</form>

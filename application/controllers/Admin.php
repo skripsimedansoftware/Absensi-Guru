@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
 
 	public function guru()
 	{
-		$data['guru'] = $this->user->read(array('role' => 'guru'));
+		$data['guru'] = $this->user->read(array('role' => 'guru'))->result();
 		$this->template->load('guru/home', $data);
 	}
 
