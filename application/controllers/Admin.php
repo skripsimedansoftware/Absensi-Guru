@@ -22,6 +22,101 @@ class Admin extends CI_Controller {
 		$this->template->load('home');
 	}
 
+	public function guru()
+	{
+		$data['guru'] = $this->user->read(array('role' => 'guru'));
+		$this->template->load('guru/home', $data);
+	}
+
+	public function add_guru()
+	{
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+			$this->form_validation->set_rules('password', 'Kata Sandi', 'trim|required');
+			$this->form_validation->set_rules('full_name', 'Nama Lengkap', 'trim|required');
+			$this->form_validation->set_rules('birthday', 'Tanggal Lahir', 'trim|required');
+			$this->form_validation->set_rules('religion', 'Agama', 'trim|required');
+			$this->form_validation->set_rules('jurusan', 'Jurusan', 'trim|required');
+			$this->form_validation->set_rules('guru_mapel', 'Guru Mapel', 'trim|required');
+
+			if ($this->form_validation->run() == TRUE)
+			{
+				$this->user->create(array(
+					'nik' => $this->input->post('nik'),
+					'role' => 'guru',
+					'email' => $this->input->post('email'),
+					'password' => sha1($this->input->post('password')),
+					'full_name' => $this->input->post('full_name'),
+					'birthday' => $this->input->post('birthday'),
+					'religion' => $this->input->post('religion'),
+					'jurusan' => $this->input->post('jurusan'),
+					'guru_mapel' => $this->input->post('guru_mapel')
+				));
+
+				redirect(base_url('admin/guru'), 'refresh');
+				$this->session->set_flashdata('guru', array('status' => 'success', 'message' => 'Data guru berhasil ditambahkan'));
+			}
+			else
+			{
+				$this->template->load('guru/add');
+			}
+		}
+		else
+		{
+			$this->template->load('guru/add');
+		}
+	}
+
+	public function edit_guru($id = NULL)
+	{
+		$data['data'] = $this->user->read(array('id' => $id))->row();
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+			$this->form_validation->set_rules('full_name', 'Nama Lengkap', 'trim|required');
+			$this->form_validation->set_rules('birthday', 'Tanggal Lahir', 'trim|required');
+			$this->form_validation->set_rules('religion', 'Agama', 'trim|required');
+			$this->form_validation->set_rules('jurusan', 'Jurusan', 'trim|required');
+			$this->form_validation->set_rules('guru_mapel', 'Guru Mapel', 'trim|required');
+
+			if ($this->form_validation->run() == TRUE)
+			{
+				$this->user->update(array(
+					'nik' => $this->input->post('nik'),
+					'role' => 'guru',
+					'email' => $this->input->post('email'),
+					'password' => (!empty($this->input->post('password')))?sha1($this->input->post('password')):$data['data']->password,
+					'full_name' => $this->input->post('full_name'),
+					'birthday' => $this->input->post('birthday'),
+					'religion' => $this->input->post('religion'),
+					'jurusan' => $this->input->post('jurusan'),
+					'guru_mapel' => $this->input->post('guru_mapel')
+				), array('id' => $id));
+
+				$this->session->set_flashdata('guru', array('status' => 'success', 'message' => 'Data guru berhasil diperbaharui'));
+				redirect(base_url('admin/guru'), 'refresh');
+			}
+			else
+			{
+				$this->template->load('guru/edit', $data);
+			}
+		}
+		else
+		{
+			$this->template->load('guru/edit', $data);
+		}
+	}
+
+	public function delete_guru($id = NULL)
+	{
+		$this->user->delete(array('id' => $id, 'role' => 'guru'));
+		$this->session->set_flashdata('guru', array('status' => 'success', 'message' => 'Data guru berhasil diperbaharui'));
+		redirect(base_url('admin/guru'), 'refresh');
+	}
+
 	public function login()
 	{
 		if ($this->input->method() == 'post')
