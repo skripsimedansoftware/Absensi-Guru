@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2021 at 10:42 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.3.29
+-- Waktu pembuatan: 17 Okt 2021 pada 07.53
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `codeigniter-starter`
+-- Database: `absensi-guru`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email_confirm`
+-- Struktur dari tabel `email_confirm`
 --
 
 CREATE TABLE `email_confirm` (
@@ -39,54 +39,80 @@ CREATE TABLE `email_confirm` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `jurusan`
+--
+
+CREATE TABLE `jurusan` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mata_pelajaran`
+--
+
+CREATE TABLE `mata_pelajaran` (
+  `id` int(2) NOT NULL,
+  `nama` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
   `id` int(2) NOT NULL,
-  `role` enum('admin','member') NOT NULL,
+  `role` enum('admin','guru') NOT NULL,
   `email` varchar(40) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(40) NOT NULL,
   `full_name` varchar(40) NOT NULL,
+  `birthday` date DEFAULT NULL,
+  `religion` varchar(10) DEFAULT NULL,
+  `jurusan` int(2) DEFAULT NULL,
+  `guru_mapel` int(2) DEFAULT NULL,
   `photo` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `role`, `email`, `username`, `password`, `full_name`, `photo`) VALUES
-(1, 'admin', 'agungmasda29@gmail.com', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', NULL);
+INSERT INTO `user` (`id`, `role`, `email`, `username`, `password`, `full_name`, `birthday`, `religion`, `jurusan`, `guru_mapel`, `photo`) VALUES
+(1, 'admin', 'agungmasda29@gmail.com', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `email_confirm`
+-- Indeks untuk tabel `email_confirm`
 --
 ALTER TABLE `email_confirm`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `email_confirm`
+-- AUTO_INCREMENT untuk tabel `email_confirm`
 --
 ALTER TABLE `email_confirm`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
