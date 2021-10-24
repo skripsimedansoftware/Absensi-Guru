@@ -7,13 +7,10 @@
 <section class="content container-fluid">
 	<div class="box">
 		<div class="box-header with-border">
-			<h3 class="box-title">Title</h3>
+			<center><h3 class="box-title">Selamat Datang Di Sistem Absensi Guru</h3></center>
 		</div>
 		<div class="box-body">
-			Start creating your amazing application!
-		</div>
-		<div class="box-footer">
-			Footer
+			<img src="<?php echo base_url('assets/logo.jpg') ?>" class="img-responsive">
 		</div>
 	</div>
 </section>
