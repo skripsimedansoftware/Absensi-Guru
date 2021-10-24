@@ -268,7 +268,7 @@ desired effect
 			Anything you want
 		</div>
 		<!-- Default to the left -->
-		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Medan Software</a>.</strong> All rights reserved.
+		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Pesantren Darussalam Guntur</a>.</strong> All rights reserved.
 	</footer>
 
 	<!-- Control Sidebar -->
