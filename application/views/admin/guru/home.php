@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<div class="box-header with-border">
-			<h3 class="box-title">Title</h3>
+			<h3 class="box-title">Data Guru</h3>
 		</div>
 		<div class="box-body">
 			<table class="table table-hover table-striped">
